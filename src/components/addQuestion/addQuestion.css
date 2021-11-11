@@ -1,0 +1,43 @@
+.form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form input {
+    display: block;
+    margin: auto;
+    padding: 8px 9px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    background: #c5e3e5;
+    border: none;
+    border-radius: 4px;
+    width: 200px;
+    color: #272643;
+    font-weight: 600;
+}
+
+.action-holder {
+    display: flex;
+    width: 220px;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.action-holder button {
+    width: 100px;
+    margin: 0px;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: rgb(52, 152, 52);
+    color: white;
+    cursor: pointer;
+}
+
+.action-holder button.cancel {
+    background: rgb(242, 81, 81);
+}

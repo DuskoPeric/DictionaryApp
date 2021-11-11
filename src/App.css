@@ -2,6 +2,40 @@
   text-align: center;
 }
 
+*:focus {
+  outline: none;
+}
+
+h1 {
+  color: #bae8e8;
+}
+
+h2 {
+  color: #272643;
+  font-weight: 600;
+}
+
+h3 {
+  color: #e3f6f5;
+}
+
+button {
+  display: block;
+  margin: auto;
+}
+
+.startQ {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 800;
+  background: #272643;
+  cursor: pointer;
+  color: #e3f6f5;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -26,6 +60,35 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.routes {
+  width: 250px;
+  margin: auto;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.routes button {
+  width: 46%;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  background: #acdcdf;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.routes button:hover {
+  color: #acdcdf;
+  background: #272643;
+}
+
+.routes button.active {
+  color: #acdcdf;
+  background: #272643;
 }
 
 @keyframes App-logo-spin {

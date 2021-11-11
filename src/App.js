@@ -1,23 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import { firestore } from "./firebase.utils";
+import { collection, getDocs } from "firebase/firestore/lite";
+import StartScreen from "./components/startScreen/startScreen";
+import QuizContent from "./components/quizContent/quizContent";
+import Dictionary from "./components/Dictionary/dictionary";
 
 function App() {
+  const [allwords, setAllwords] = useState([]);
+  const [activeScreen, setActiveScreen] = useState("home");
+
+  const getDataList = async () => {
+    const dataRef = await collection(firestore, "words");
+    const snapshot = await getDocs(dataRef);
+    let data = [];
+    snapshot.forEach(doc => {
+      data.push({ id: doc.id, ...doc.data() });
+    });
+    setAllwords(data);
+  };
+
+  useEffect(() => {
+    getDataList();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h1>Dictionary Quiz</h1>
+      <div className="routes">
+        <button
+          className={activeScreen === "home" ? "active" : ""}
+          onClick={() => {
+            setActiveScreen("home");
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Home
+        </button>
+        <button
+          className={activeScreen === "dictionary" ? "active" : ""}
+          onClick={() => {
+            setActiveScreen("dictionary");
+          }}
+        >
+          Dictionary
+        </button>
+      </div>
+      {activeScreen === "home" && (
+        <StartScreen
+          startQuiz={() => {
+            setActiveScreen("quiz");
+          }}
+        />
+      )}
+      {activeScreen === "quiz" && <QuizContent allWords={allwords} />}
+      {activeScreen === "dictionary" && (
+        <Dictionary words={allwords} refreshDictionary={getDataList} />
+      )}
     </div>
   );
 }
